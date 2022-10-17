@@ -1,0 +1,27 @@
+.modal_wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #33151690;
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px 0 #fff8, 0 0 15px 0 #fff6;
+    position: relative;
+}
+
+.modal__close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

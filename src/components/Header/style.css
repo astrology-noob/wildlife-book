@@ -1,0 +1,37 @@
+header {
+    padding: 30px;
+    background-color: #33151690;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.search {
+    display: flex;
+    gap: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;
+}
+
+.disabled{
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* .add {
+    height: 10;
+} */
+/* 
+.bi-bag-plus {
+    color: #fff;
+    font-size: 2rem;
+} */
