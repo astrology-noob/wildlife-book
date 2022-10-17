@@ -7,14 +7,15 @@ import AuthModal from "./components/AuthModal";
 import "./index.css";
 
 const animals = ["Амурский тигр", "Среднеазиатский леопард", "Ирбис", "Белый медведь", "Горбатый кит"];
+localStorage.setItem("users", "[\"su\", \"admin\"]")
 
-export default () => {    
+export default () => {
     const [searchText, search] = useState("");
     const [modalState, setModalState] = useState(false);
     const [data, setData] = useState(animals);
     const [authModalState, setAuthModalState] = useState(false);
     const [login_reg_view, setView] = useState("login");
-    const [user, setUser] = useState(localStorage.getItem("user"));
+    const [curUser, setCurUser] = useState();
 
     return <>
         <Header 
@@ -22,8 +23,8 @@ export default () => {
             find={search} 
             setModalState={setModalState}
             setAuthModalState={setAuthModalState}
-            user={user}
-            setUser={setUser}/>
+            curUser={curUser}
+            setCurUser={setCurUser}/>
         <Main data={data} sort={searchText} />
         <Footer />
         <Modal 
@@ -35,6 +36,6 @@ export default () => {
             loginState={login_reg_view}
             setAuthModalState={setAuthModalState} 
             state={authModalState} 
-            setUser={setUser}/>
+            setCurUser={setCurUser}/>
     </>
 }

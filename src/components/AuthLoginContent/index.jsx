@@ -1,15 +1,17 @@
 import React, {useState} from "react";
 import "./style.css";
 
-export default ({displayHandler, setView, setUser}) => {
+export default ({displayHandler, setView, setCurUser}) => {
 
     const signIn = (e) => {
         e.preventDefault();
         let user = e.target.username.value;
-        if (localStorage.getItem("user")) {
-            setUser(user);
+        if (JSON.parse(localStorage.getItem("users")).indexOf(user) >= 0) {
+            setCurUser(user);
+            localStorage.setItem("curUser", user);
             displayHandler();
         }
+        e.target.username.value = "";
     }
 
     return <>

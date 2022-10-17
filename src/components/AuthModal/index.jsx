@@ -4,7 +4,7 @@ import cross from "bootstrap-icons/icons/x.svg";
 import AuthLoginContent from "../AuthLoginContent";
 import AuthRegContent from "../AuthRegContent";
 
-export default ({setAuthState, loginState, setAuthModalState, state, setUser}) => {
+export default ({setAuthState, loginState, setAuthModalState, state, setCurUser}) => {
 
     const viewHandler = () => {
         if (loginState == "login") {
@@ -25,7 +25,7 @@ export default ({setAuthState, loginState, setAuthModalState, state, setUser}) =
         <div className="modal">
             <div className="modal__close" onClick={stateHandler}><img src={cross} alt="modal close btn"/></div>
             <div className="modal__content">
-                {loginState == "login" ? <AuthLoginContent displayHandler={stateHandler} setView={viewHandler} setUser={setUser}/> : <AuthRegContent displayHandler={stateHandler} setView={viewHandler} setUser={setUser}/>}
+                {loginState == "login" ? <AuthLoginContent displayHandler={stateHandler} setView={viewHandler} setCurUser={setCurUser}/> : <AuthRegContent displayHandler={stateHandler} setView={viewHandler} setCurUser={setCurUser}/>}
             </div>
         </div>
     </div>
