@@ -23,6 +23,7 @@ export default () => {
             find={search} 
             setModalState={setModalState}
             setAuthModalState={setAuthModalState}
+            setView={setView}
             curUser={curUser}
             setCurUser={setCurUser}/>
         <Main data={data} sort={searchText} />

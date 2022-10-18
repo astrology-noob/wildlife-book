@@ -1,19 +1,17 @@
 import React, {useState} from "react";
 import "./style.css";
-import plus from "bootstrap-icons/icons/plus.svg"
 import AuthorisedUser from "../AuthorisedUser";
 
-export default ({text, find, setModalState, setAuthModalState, curUser, setCurUser}) => {
+export default ({text, find, setModalState, setAuthModalState, setView, curUser, setCurUser}) => {
     return <header>
         <a href="" className="logo">Wildlife Book</a>
         <div className="buttons">
             <div className="search">
-                <input type="search" className="search__inp" value={text} onChange={e => find(e.target.value)}/>
+                <input type="search" className="search__inp" value={text} placeholder="Найти" onChange={e => find(e.target.value)}/>
             </div>
-            <div className="add" onClick={setModalState}>
-                <img src={plus}/>
+            <div className="add" onClick={setModalState}> Добавить животное +
             </div>
-            {curUser ? <AuthorisedUser curUser={curUser} setCurUser={setCurUser}/> : <button className="auth_login" onClick={setAuthModalState}>Войти</button>}
+            {curUser ? <AuthorisedUser curUser={curUser} setCurUser={setCurUser}/> : <button className="auth_login" onClick={()=> {setAuthModalState(true); setView("login")}}>Войти</button>}
         </div>
     </header>
 }

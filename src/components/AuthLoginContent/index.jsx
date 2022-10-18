@@ -18,8 +18,8 @@ export default ({displayHandler, setView, setCurUser}) => {
         <h2>Войти</h2>
         <form onSubmit={signIn}>
             <input type="text" name="username" placeholder="Название"/>
-            <input type="submit" value="Войти" />
+            <button type="submit">Войти</button>
         </form>
-        <button onClick={setView}>Зарегистрироваться</button>
+        <button className="change_view_btn" onClick={setView}>Зарегистрироваться</button>
     </> 
 }

@@ -4,6 +4,79 @@ body {
 	
 }
 
+button {
+	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
+	cursor: pointer;
+}
+
+input:focus {
+	outline: none;
+}
+
+.modal_wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #33151690;
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px 0 #fff8, 0 0 15px 0 #fff6;
+    position: relative;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+	width: 100%;
+}
+
+form > input[type=text] {
+    height: 30px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(240, 240, 240);
+}
+
+form > button {
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(166, 210, 64, 0.67);
+    height: 30px;
+}
+
+.modal__content {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.modal__close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.change_view_btn {
+	background-color: transparent;
+	border: none;
+}
+
 #root {
 	display: flex;
 	flex-direction: column;

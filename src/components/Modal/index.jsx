@@ -16,22 +16,26 @@ export default ({changeList, setState, state}) => {
     const handler = (e) => {
         e.preventDefault();
         changeList(prev => {
-            if (prev.includes(animal))
+            if (animal.length > 0)
+                if (prev.includes(animal))
+                    return prev
+                else
+                    return [...prev, animal].sort();
+            else 
                 return prev
-            else
-                return [...prev, animal].sort();
         })
 
         setAnimal("");
+        setState(false);
     }
 
     return <div className="modal_wrapper" style={style}>
         <div className="modal">
             <div className="modal__close" onClick={stateHandler}><img src={cross} alt="modal close btn"/></div>
             <div className="modal__content">
-                <h2>Добавить редкое животное</h2>
+                <h3>Добавить редкое животное</h3>
                 <form onSubmit={handler}>
-                    <input type="text" placeholder="Название" onChange={e => setAnimal(e.target.value)}/>
+                    <input type="text" placeholder="Название" value={animal} onChange={e => setAnimal(e.target.value)}/>
                     <button type="submit">Добавить</button>
                 </form>
             </div>

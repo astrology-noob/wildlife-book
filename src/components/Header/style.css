@@ -1,5 +1,6 @@
 header {
-    padding: 30px;
+    height: 50px;
+    padding: 10px;
     background-color: #33151690;
     color: #fff;
     display: flex;
@@ -12,14 +13,47 @@ a {
     text-decoration: none;
 }
 
-.search {
-    display: flex;
-    gap: 20px;
+a, .add {
+    cursor: pointer;
+}
+
+.logo {
+    font-size: 15pt;
 }
 
 .buttons {
     display: flex;
     gap: 30px;
+    background-color: #fff3;
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    gap: 20px;
+}
+
+.search > input {
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.search > input:focus {
+    outline: 2px solid rgb(110, 37, 8);
+}
+
+.auth_login, .auth_logout {
+    background-color: rgba(192, 243, 73, 0.467);
+    border: none;
+    padding: 5px 30px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12pt;
 }
 
 .disabled{
