@@ -4,6 +4,8 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import AuthModal from "./components/AuthModal";
+import Profile from "./components/Profile";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import "./index.css";
 
 const animals = ["Амурский тигр", "Среднеазиатский леопард", "Ирбис", "Белый медведь", "Горбатый кит"];
@@ -18,15 +20,28 @@ export default () => {
     const [curUser, setCurUser] = useState();
 
     return <>
-        <Header 
-            text={searchText} 
-            find={search} 
-            setModalState={setModalState}
-            setAuthModalState={setAuthModalState}
-            setView={setView}
-            curUser={curUser}
-            setCurUser={setCurUser}/>
-        <Main data={data} sort={searchText} />
+
+        <BrowserRouter>
+            <Header 
+                text={searchText} 
+                find={search} 
+                setModalState={setModalState}
+                setAuthModalState={setAuthModalState}
+                setView={setView}
+                curUser={curUser}
+                setCurUser={setCurUser}/>
+
+            <Switch>
+                <Route exact path="/">
+                    <Main data={data} sort={searchText} />
+                </Route>
+                <Route exact path="/profile">
+                    <Profile user={curUser}/>
+                </Route>
+            </Switch>
+
+        </BrowserRouter>
+        
         <Footer />
         <Modal 
             changeList={setData}

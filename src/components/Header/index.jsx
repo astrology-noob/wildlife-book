@@ -1,17 +1,44 @@
 import React, {useState} from "react";
+import {Router, Route, Link} from 'react-router-dom';
 import "./style.css";
-import AuthorisedUser from "../AuthorisedUser";
+// import AuthorisedUser from "../AuthorisedUser";
 
 export default ({text, find, setModalState, setAuthModalState, setView, curUser, setCurUser}) => {
     return <header>
-        <a href="" className="logo">Wildlife Book</a>
+        <Link to="/">
+            <div className="logo">Wildlife Book</div>
+        </Link>
         <div className="buttons">
             <div className="search">
                 <input type="search" className="search__inp" value={text} placeholder="Найти" onChange={e => find(e.target.value)}/>
             </div>
             <div className="add" onClick={setModalState}> Добавить животное +
             </div>
-            {curUser ? <AuthorisedUser curUser={curUser} setCurUser={setCurUser}/> : <button className="auth_login" onClick={()=> {setAuthModalState(true); setView("login")}}>Войти</button>}
+                {
+                curUser ? 
+                (
+                    <div className="authorised_user">
+                        <Link to="/profile">
+                            <div onClick={setCurUser(curUser)}>{curUser}</div> 
+                        </Link>
+                        <Link to="/">
+                            <button 
+                                className="auth_login" 
+                                onClick={()=> {localStorage.setItem("curUser", ""); setCurUser("");}}>
+                                    Выйти
+                            </button>
+                        </Link>
+                    </div>
+                ) :
+                (
+                    <Link to="/">
+                        <button 
+                            className="auth_login" 
+                            onClick={()=> {setAuthModalState(true); setView("login")}}>
+                                Войти
+                        </button>
+                    </Link>
+                )}
         </div>
     </header>
 }
