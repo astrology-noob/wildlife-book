@@ -87,3 +87,22 @@ form > button {
     background-position: center bottom;
 	background-attachment: fixed;
 }
+
+.container {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: auto;
+    justify-content: center;
+}
+
+.card {
+    width: 150px;
+    height: 125px;
+    background-color: rgba(156, 181, 57, 0.8);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

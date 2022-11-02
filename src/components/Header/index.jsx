@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Router, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import "./style.css";
 // import AuthorisedUser from "../AuthorisedUser";
 
@@ -8,6 +8,11 @@ export default ({text, find, setModalState, setAuthModalState, setView, curUser,
         <Link to="/">
             <div className="logo">Wildlife Book</div>
         </Link>
+
+        <Link to="/data">
+            <div className="data_link">Загрузочка...</div>
+        </Link>
+
         <div className="buttons">
             <div className="search">
                 <input type="search" className="search__inp" value={text} placeholder="Найти" onChange={e => find(e.target.value)}/>
@@ -18,9 +23,11 @@ export default ({text, find, setModalState, setAuthModalState, setView, curUser,
                 curUser ? 
                 (
                     <div className="authorised_user">
+
                         <Link to="/profile">
                             <div onClick={setCurUser(curUser)}>{curUser}</div> 
                         </Link>
+
                         <Link to="/">
                             <button 
                                 className="auth_login" 
