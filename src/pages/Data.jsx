@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
-export default (info) => {
+export default () => {
     const [data, setData] = useState([]);
     const link = "https://fakerapi.it/api/v1/custom?_quantity=20&name=pokemon&cnt=number";
 
@@ -12,7 +12,7 @@ export default (info) => {
     }, []);
 
     return <main>
-        <h1>Data</h1>
+        <h1>Покемоны</h1>
         <div className="container">
             {data.map((elem, i) => 
                 <Link to={`/data/${elem.name}`} className="card" key={i}>

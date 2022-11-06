@@ -1,24 +1,18 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import "./style.css";
-// import AuthorisedUser from "../AuthorisedUser";
 
-export default ({text, find, setModalState, setAuthModalState, setView, curUser, setCurUser}) => {
+export default ({setAuthModalState, setView, curUser, setCurUser}) => {
     return <header>
         <Link to="/">
             <div className="logo">Wildlife Book</div>
         </Link>
 
         <Link to="/data">
-            <div className="data_link">Загрузочка...</div>
+            <div className="data_link">Покемоны</div>
         </Link>
 
-        <div className="buttons">
-            <div className="search">
-                <input type="search" className="search__inp" value={text} placeholder="Найти" onChange={e => find(e.target.value)}/>
-            </div>
-            <div className="add" onClick={setModalState}> Добавить животное +
-            </div>
+        <div className="profile">
                 {
                 curUser ? 
                 (

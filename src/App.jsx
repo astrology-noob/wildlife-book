@@ -5,18 +5,21 @@ import Footer from "./components/Footer";
 import Modal from "./components/Modal";
 import AuthModal from "./components/AuthModal";
 import Profile from "./components/Profile";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import "./index.css";
 import Data from "./pages/Data";
 import Single from "./pages/Single";
+
+import Api from "../src/api";
+import "regenerator-runtime/runtime";
 
 const animals = ["Амурский тигр", "Среднеазиатский леопард", "Ирбис", "Белый медведь", "Горбатый кит"];
 localStorage.setItem("users", "[\"su\", \"admin\"]")
 
 export default () => {
     const [searchText, search] = useState("");
-    const [modalState, setModalState] = useState(false);
-    const [data, setData] = useState(animals);
+    const [addModalState, setAddModalState] = useState(false);
+    // const [data, setData] = useState(animals);
     const [authModalState, setAuthModalState] = useState(false);
     const [login_reg_view, setView] = useState("login");
     const [curUser, setCurUser] = useState();
@@ -24,9 +27,6 @@ export default () => {
     return <>
 
         <Header 
-            text={searchText} 
-            find={search} 
-            setModalState={setModalState}
             setAuthModalState={setAuthModalState}
             setView={setView}
             curUser={curUser}
@@ -34,7 +34,10 @@ export default () => {
 
         <Switch>
             <Route exact path="/">
-                <Main data={data} sort={searchText} />
+                <Main
+                    text={searchText} 
+                    find={search}
+                    setAddModalState={setAddModalState} />
             </Route>
             <Route exact path="/profile">
                 <Profile user={curUser} />
@@ -49,9 +52,8 @@ export default () => {
         
         <Footer />
         <Modal 
-            changeList={setData}
-            setState={setModalState} 
-            state={modalState} />
+            setState={setAddModalState} 
+            state={addModalState} />
 
         <AuthModal
             setAuthState={setView}

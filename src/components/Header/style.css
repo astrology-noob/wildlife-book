@@ -26,7 +26,7 @@ a, .add {
     width: 100px;
 }
 
-.buttons {
+.profile {
     display: flex;
     gap: 30px;
     background-color: #fff3;
@@ -35,23 +35,7 @@ a, .add {
     align-items: center;
 }
 
-.search {
-    display: flex;
-    gap: 20px;
-}
-
-.search > input {
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    padding-left: 5px;
-}
-
-.search > input:focus {
-    outline: 2px solid rgb(110, 37, 8);
-}
-
-.auth_login{
+.auth_login {
     background-color: rgba(192, 243, 73, 0.467);
     border: none;
     padding: 5px 30px;
