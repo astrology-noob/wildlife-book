@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
@@ -13,18 +13,37 @@ import Single from "./pages/Single";
 import Api from "../src/api";
 import "regenerator-runtime/runtime";
 
-const animals = ["Амурский тигр", "Среднеазиатский леопард", "Ирбис", "Белый медведь", "Горбатый кит"];
+const Ctx = React.createContext({
+
+})
+
+// const animals = ["Амурский тигр", "Среднеазиатский леопард", "Ирбис", "Белый медведь", "Горбатый кит"];
 localStorage.setItem("users", "[\"su\", \"admin\"]")
 
-export default () => {
-    const [searchText, search] = useState("");
+const App = () => {
+    const [searchText, setSearchText] = useState("");
     const [addModalState, setAddModalState] = useState(false);
     // const [data, setData] = useState(animals);
     const [authModalState, setAuthModalState] = useState(false);
     const [login_reg_view, setView] = useState("login");
     const [curUser, setCurUser] = useState();
+    const [animal, setAnimal] = useState({});
 
-    return <>
+    const [animals, setAnimals] = useState([]);
+
+
+    useEffect(() => {
+        Api.getAll().then(data => setAnimals(data))
+    }, []);
+
+    // добавить пользователя в контекст
+
+    return <Ctx.Provider value={{
+            animals: animals,
+            setAnimals: setAnimals,
+            searchText: searchText,
+            updateSearchText: setSearchText
+        }}>
 
         <Header 
             setAuthModalState={setAuthModalState}
@@ -35,18 +54,21 @@ export default () => {
         <Switch>
             <Route exact path="/">
                 <Main
-                    text={searchText} 
-                    find={search}
-                    setAddModalState={setAddModalState} />
+                    setAddModalState={setAddModalState}
+                    setAnimal={setAnimal} />
             </Route>
             <Route exact path="/profile">
                 <Profile user={curUser} />
             </Route>
+            {/* убрать data и покемонов */}
             <Route exact path="/data">
                 <Data />
             </Route>
-            <Route path="/data/:name">
+            <Route exact path="/data/:name">
                 <Single />
+            </Route>
+            <Route exact path="/animals/:name">
+                <Single animal={animal} />
             </Route>
         </Switch>
         
@@ -61,5 +83,7 @@ export default () => {
             setAuthModalState={setAuthModalState} 
             state={authModalState} 
             setCurUser={setCurUser}/>
-    </>
+    </Ctx.Provider>
 }
+
+export {App, Ctx};

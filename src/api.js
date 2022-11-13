@@ -4,8 +4,8 @@ class Api {
         return await fetch(path).then(res => res.json()).then(data => data.data).then(data => data);
     }
 
-    static async getSingle(id, path="https://wwf-server.herokuapp.com/api/animals") { // _id
-        return await fetch(path + "/" + id).then(res => res.json()).then(data => data);
+    static async getSingle(name, path="https://wwf-server.herokuapp.com/api/animals") { // _id
+        return await fetch(path + "/" + name).then(res => res.json()).then(data => data["message"]["stringValue"]);
     }
 
     static async addAnimal(body, path="https://wwf-server.herokuapp.com/api/animals") {
