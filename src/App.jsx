@@ -23,12 +23,11 @@ localStorage.setItem("users", "[\"su\", \"admin\"]")
 const App = () => {
     const [searchText, setSearchText] = useState("");
     const [addModalState, setAddModalState] = useState(false);
-    // const [data, setData] = useState(animals);
     const [authModalState, setAuthModalState] = useState(false);
     const [login_reg_view, setView] = useState("login");
     const [curUser, setCurUser] = useState();
-    const [animal, setAnimal] = useState({});
 
+    const [animal, setAnimal] = useState({});
     const [animals, setAnimals] = useState([]);
 
 
@@ -42,7 +41,9 @@ const App = () => {
             animals: animals,
             setAnimals: setAnimals,
             searchText: searchText,
-            updateSearchText: setSearchText
+            updateSearchText: setSearchText,
+            animal: animal,
+            setAnimal: setAnimal,
         }}>
 
         <Header 
@@ -61,14 +62,14 @@ const App = () => {
                 <Profile user={curUser} />
             </Route>
             {/* убрать data и покемонов */}
-            <Route exact path="/data">
+            {/* <Route exact path="/data">
                 <Data />
             </Route>
             <Route exact path="/data/:name">
                 <Single />
-            </Route>
-            <Route exact path="/animals/:name">
-                <Single animal={animal} />
+            </Route> */}
+            <Route path="/animals/:name">
+                <Single />
             </Route>
         </Switch>
         

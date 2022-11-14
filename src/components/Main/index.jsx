@@ -1,11 +1,12 @@
 import React, {useContext} from "react";
-import {Ctx} from '../../App';
+import {Ctx} from "../../App";
 import "./style.css";
-import Api from "../../api";
+import Card from "../Card";
 import "regenerator-runtime/runtime";
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
 
-export default ({setAddModalState, setAnimal}) => {
+export default ({setAddModalState}) => {
+
     // let data = ["Альбатрос", "Барсук", "Ворон", "Гвоздодёр", "Ехидна"]
     // const [data, setData] = useState([]);
 
@@ -17,7 +18,7 @@ export default ({setAddModalState, setAnimal}) => {
     const {animals, searchText} = useContext(Ctx);
 
     let arr = animals.filter(animal => {
-        if (typeof animal.type !== 'undefined') {
+        if (typeof animal.type !== "undefined") {
             if (animal.type.toLowerCase().search(searchText.toLowerCase()) !== -1)
             return animal
         }
@@ -35,16 +36,12 @@ export default ({setAddModalState, setAnimal}) => {
             </div>
         </div>
         {searchText && <div>Поиск: {searchText}</div>}
-        <ul>
+        <ul className="cards">
             {searchText ? arr.map(a =>
-                <Link to={`/animals/${a.type}`} key={a["_id"]} onClick={setAnimal(a)}>
-                    <li key={a["_id"]}>{a.type}</li>
-                </Link>
+                    <Card key={a["_id"]} animal={a}/>
                  ) 
                  : animals.map(a => 
-                <Link to={`/animals/${a.type}`} key={a["_id"]} onClick={setAnimal(a)}>
-                    <li key={a["_id"]}>{a.type}</li>
-                </Link>
+                    <Card key={a["_id"]} animal={a}/>
             )}
         </ul>
     </main>
