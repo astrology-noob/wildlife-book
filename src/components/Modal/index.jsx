@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "./style.css";
 import cross from "bootstrap-icons/icons/x.svg";
 import Api from "../../api.js";
 
@@ -11,7 +10,7 @@ export default ({setState, state}) => {
     const [height, setHeight] = useState("");
     const [lifespan, setLifespan] = useState("");
     const [population, setPopulation] = useState("");
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState("Неопределенные по статусу");
     const [long, setLong] = useState("");
     const [lat, setLat] = useState("");
 
@@ -34,20 +33,11 @@ export default ({setState, state}) => {
             "average_height": height,
             "lifespan": lifespan,
             "population": population,
+            "status": status,
             "habitat": [lat, long]
         }
 
         const result = Api.addAnimal(body);
-
-        // changeList(prev => {
-        //     if (animal.length > 0)
-        //         if (prev.includes(animal))
-        //             return prev
-        //         else
-        //             return [...prev, animal].sort();
-        //     else 
-        //         return prev
-        // })
 
         setType("");
         setDesc("");
@@ -56,7 +46,7 @@ export default ({setState, state}) => {
         setHeight("");
         setLifespan("");
         setPopulation("");
-        setStatus("");
+        setStatus("Неопределенные по статусу");
         setLat("");
         setLong("");
         setState(false);
@@ -76,7 +66,14 @@ export default ({setState, state}) => {
                     <input type="number" placeholder="Средний рост" name="average_height" value={height} onChange={e => setHeight(e.target.value)}/>
                     <input type="number" placeholder="Продолжительность жизни" name="lifespan" value={lifespan} onChange={e => setLifespan(e.target.value)}/>
                     <input type="number" placeholder="Популяция" name="population" value={population} onChange={e => setPopulation(e.target.value)}/>
-                    <input type="text" placeholder="Статус" name="status" value={status} onChange={e => setStatus(e.target.value)}/>
+                    <select name="status" value={status} onChange={e => setStatus(e.target.options[e.target.selectedIndex].text)}>
+                        <option value="Неопределенные по статусу">Неопределенные по статусу</option>
+                        <option value="Вероятно исчезнувшие">Вероятно исчезнувшие</option>
+                        <option value="Находящиеся под угрозой исчезновения">Находящиеся под угрозой исчезновения</option>
+                        <option value="Сокращающиеся в численности">Сокращающиеся в численности</option>
+                        <option value="Редкие">Редкие</option>
+                        <option value="Восстанавливаемые и восстанавливающиеся">Восстанавливаемые и восстанавливающиеся</option>
+                    </select>
                     <label>Ареал обитания</label>
                     <input type="text" placeholder="Широта" name="habitat_lat" value={lat} onChange={e => setLat(e.target.value)}/>
                     <input type="text" placeholder="Долгота" name="habitat_long" value={long} onChange={e => setLong(e.target.value)}/>

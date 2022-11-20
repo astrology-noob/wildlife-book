@@ -7,14 +7,6 @@ import {Link} from "react-router-dom";
 
 export default ({setAddModalState}) => {
 
-    // let data = ["Альбатрос", "Барсук", "Ворон", "Гвоздодёр", "Ехидна"]
-    // const [data, setData] = useState([]);
-
-    // useEffect(() => {
-    //     Api.getAll().then(data => setData(data))
-    // }, []);
-
-
     const {animals, searchText} = useContext(Ctx);
 
     let arr = animals.filter(animal => {
@@ -23,6 +15,8 @@ export default ({setAddModalState}) => {
             return animal
         }
     });
+
+    // добавить кнопки для фильтрации
 
     return <main>
         <h1>Животные</h1>

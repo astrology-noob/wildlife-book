@@ -7,17 +7,12 @@ import AuthModal from "./components/AuthModal";
 import Profile from "./components/Profile";
 import {Switch, Route} from "react-router-dom";
 import "./index.css";
-import Data from "./pages/Data";
 import Single from "./pages/Single";
 
 import Api from "../src/api";
-import "regenerator-runtime/runtime";
 
-const Ctx = React.createContext({
+const Ctx = React.createContext({})
 
-})
-
-// const animals = ["Амурский тигр", "Среднеазиатский леопард", "Ирбис", "Белый медведь", "Горбатый кит"];
 localStorage.setItem("users", "[\"su\", \"admin\"]")
 
 const App = () => {
@@ -36,7 +31,7 @@ const App = () => {
     }, []);
 
     // добавить пользователя в контекст
-
+    // сделать несколько контекстов
     return <Ctx.Provider value={{
             animals: animals,
             setAnimals: setAnimals,
@@ -61,13 +56,6 @@ const App = () => {
             <Route exact path="/profile">
                 <Profile user={curUser} />
             </Route>
-            {/* убрать data и покемонов */}
-            {/* <Route exact path="/data">
-                <Data />
-            </Route>
-            <Route exact path="/data/:name">
-                <Single />
-            </Route> */}
             <Route path="/animals/:name">
                 <Single />
             </Route>

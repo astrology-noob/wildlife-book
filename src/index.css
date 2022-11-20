@@ -55,7 +55,7 @@ form {
 	width: 100%;
 }
 
-form > input[type=text], input[type=number] {
+form > input[type=text], input[type=number], select {
     height: 30px;
     padding-left: 10px;
     border: none;
