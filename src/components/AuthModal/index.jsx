@@ -1,31 +1,32 @@
-import React, {useState} from "react";
-import "./style.css";
+import React, {useContext} from "react";
 import cross from "bootstrap-icons/icons/x.svg";
 import AuthLoginContent from "../AuthLoginContent";
 import AuthRegContent from "../AuthRegContent";
+import {Ctx} from "../../App";
 
-export default ({setAuthState, loginState, setAuthModalState, state, setCurUser}) => {
+export default () => {
+    const {loginRegView, setView, setAuthModalState, authModalState, setCurUser} = useContext(Ctx);
 
     const viewHandler = () => {
-        if (loginState == "login") {
-            setAuthState("reg");
+        if (loginRegView == "login") {
+            setView("reg");
         }
-        else setAuthState("login");
+        else setView("login");
     }
 
     const stateHandler = () => {
-        setAuthModalState(!state);
+        setAuthModalState(!authModalState);
     }
 
     const modalStyle = {
-        display: state ? "flex" : "none"
+        display: authModalState ? "flex" : "none"
     }
 
     return <div className="modal_wrapper" style={modalStyle}>
         <div className="modal">
             <div className="modal__close" onClick={stateHandler}><img src={cross} alt="modal close btn"/></div>
             <div className="modal__content">
-                {loginState == "login" ? <AuthLoginContent displayHandler={stateHandler} setView={viewHandler} setCurUser={setCurUser}/> : <AuthRegContent displayHandler={stateHandler} setView={viewHandler} setCurUser={setCurUser}/>}
+                {loginRegView == "login" ? <AuthLoginContent displayHandler={stateHandler} setView={viewHandler} setCurUser={setCurUser}/> : <AuthRegContent displayHandler={stateHandler} setView={viewHandler} setCurUser={setCurUser}/>}
             </div>
         </div>
     </div>

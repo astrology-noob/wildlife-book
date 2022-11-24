@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import {Link} from 'react-router-dom';
 import "./style.css";
+import {Ctx} from "../../App";
 
-export default ({setAuthModalState, setView, curUser, setCurUser}) => {
+export default () => {
+    const {curUser, setCurUser, setAuthModalState, setView} = useContext(Ctx);
+    
     return <header>
         <Link to="/">
             <div className="logo">Wildlife Book</div>
-        </Link>
-
-        <Link to="/data">
-            <div className="data_link">Покемоны</div>
         </Link>
 
         <div className="profile">
@@ -19,7 +18,7 @@ export default ({setAuthModalState, setView, curUser, setCurUser}) => {
                     <div className="authorised_user">
 
                         <Link to="/profile">
-                            <div onClick={setCurUser(curUser)}>{curUser}</div> 
+                            <div>{curUser}</div> 
                         </Link>
 
                         <Link to="/">

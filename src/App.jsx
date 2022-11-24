@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
-import Modal from "./components/Modal";
+import AnimalModal from "./components/AnimalModal";
 import AuthModal from "./components/AuthModal";
 import Profile from "./components/Profile";
 import {Switch, Route} from "react-router-dom";
@@ -17,14 +17,15 @@ localStorage.setItem("users", "[\"su\", \"admin\"]")
 
 const App = () => {
     const [searchText, setSearchText] = useState("");
-    const [addModalState, setAddModalState] = useState(false);
+    const [animModalState, setAnimModalState] = useState("");
     const [authModalState, setAuthModalState] = useState(false);
-    const [login_reg_view, setView] = useState("login");
+    const [loginRegView, setView] = useState("login");
     const [curUser, setCurUser] = useState();
 
     const [animal, setAnimal] = useState({});
     const [animals, setAnimals] = useState([]);
 
+    const statuses = ["Неопределенные по статусу", "Восстанавливаемые и восстанавливающиеся", "Сокращающиеся в численности", "Редкие", "Находящиеся под угрозой исчезновения", "Вероятно исчезнувшие", ""]
 
     useEffect(() => {
         Api.getAll().then(data => setAnimals(data))
@@ -36,21 +37,25 @@ const App = () => {
             animals: animals,
             setAnimals: setAnimals,
             searchText: searchText,
-            updateSearchText: setSearchText,
+            setSearchText: setSearchText,
             animal: animal,
             setAnimal: setAnimal,
+            animModalState: animModalState,
+            setAnimModalState: setAnimModalState,
+            statuses: statuses,
+            curUser: curUser,
+            setCurUser: setCurUser,
+            authModalState: authModalState,
+            setAuthModalState: setAuthModalState,
+            loginRegView: loginRegView,
+            setView: setView
         }}>
 
-        <Header 
-            setAuthModalState={setAuthModalState}
-            setView={setView}
-            curUser={curUser}
-            setCurUser={setCurUser}/>
+        <Header/>
 
         <Switch>
             <Route exact path="/">
                 <Main
-                    setAddModalState={setAddModalState}
                     setAnimal={setAnimal} />
             </Route>
             <Route exact path="/profile">
@@ -62,16 +67,9 @@ const App = () => {
         </Switch>
         
         <Footer />
-        <Modal 
-            setState={setAddModalState} 
-            state={addModalState} />
+        <AnimalModal />
 
-        <AuthModal
-            setAuthState={setView}
-            loginState={login_reg_view}
-            setAuthModalState={setAuthModalState} 
-            state={authModalState} 
-            setCurUser={setCurUser}/>
+        <AuthModal/>
     </Ctx.Provider>
 }
 
