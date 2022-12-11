@@ -22,7 +22,7 @@ const App = () => {
     const [loginRegView, setView] = useState("login");
     const [curUser, setCurUser] = useState();
 
-    const [animal, setAnimal] = useState({});
+    const [animal, setAnimal] = useState({});   
     const [animals, setAnimals] = useState([]);
 
     const statuses = ["Неопределенные по статусу", "Восстанавливаемые и восстанавливающиеся", "Сокращающиеся в численности", "Редкие", "Находящиеся под угрозой исчезновения", "Вероятно исчезнувшие", ""]

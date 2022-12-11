@@ -4,7 +4,7 @@ import Api from "../../api.js";
 import {Ctx} from "../../App";
 
 export default () => {
-    const {animModalState, setAnimModalState, animals, setAnimal, statuses} = useContext(Ctx);
+    const {animModalState, setAnimModalState, animals, animal, setAnimal, statuses} = useContext(Ctx);
 
     const [type, setType] = useState("");
     const [desc, setDesc] = useState("");
@@ -39,9 +39,15 @@ export default () => {
         
         if (animModalState == "add"){
             const result = Api.addAnimal(body);
+            result.then(res => {
+                clear();
+            })
         }
         else if (animModalState == "update"){
-            const result = Api.updateAnimal(body);
+            const result = Api.updateAnimal(animal._id, body);
+            result.then(res => {
+                clear();
+            })
         }
     }
 
@@ -108,7 +114,6 @@ export default () => {
                     
                     {animModalState == "add" && <button type="submit">Добавить</button>}
                     {animModalState == "update" && <button type="submit">Обновить</button>}
-                    {animModalState == "delete" && <button type="submit">Удалить</button>}
                     
                 </form>
 

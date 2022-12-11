@@ -52,7 +52,6 @@ export default () => {
             <div className="buttons">
                 <button className="add" onClick={() => setAnimModalState("add")}>Добавить</button>
                 <button className="update" onClick={() => setAnimModalState("update")}>Изменить</button>
-                <button className="delete" onClick={() => setAnimModalState("delete")}>Удалить</button>
             </div>
         </div>
 
