@@ -71,7 +71,7 @@ export default () => {
         <div className="modal">
             <div className="modal__close" onClick={clear}><img src={cross} alt="modal close btn"/></div>
             <div className="modal__content">
-                <h3>Добавить редкое животное</h3>
+            {animModalState == "add" ? <h3>Добавить редкое животное</h3> : <h3>Изменить редкое животное</h3> }
 
                 <form onSubmit={handler}>
                     {animModalState == "add" ?
