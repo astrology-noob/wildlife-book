@@ -6,7 +6,7 @@ import "regenerator-runtime/runtime";
 
 export default () => {
 
-    const {animals, setAnimals, searchText, setSearchText, setAnimModalState, statuses} = useContext(Ctx);
+    const {animals, searchText, setSearchText, setAnimModalState, statuses} = useContext(Ctx);
 
     const [sorted, setSorted] = useState("");
     const [sorted_animals, setSortedAnimals] = useState();
@@ -18,8 +18,15 @@ export default () => {
         }
     });
 
+    const style_sort_alphabet = {
+        outline: sorted == "alphabet" ? "#fff solid 1px" : "none"
+    }
+
+    const style_sort_status = {
+        outline: sorted == "status" ? "#fff solid 1px" : "none"
+    }
+
     const sortByStatus = (sort_type) => {
-        console.log(sorted);
         sorted ? sorted == sort_type ? setSorted("") : setSorted(sort_type) : setSorted(sort_type);
         if (sorted) {
             if (sorted == sort_type){
@@ -47,8 +54,8 @@ export default () => {
 
         <div className="top_animal_panel">
             <input type="search" className="search__inp" value={searchText} placeholder="Найти" onChange={e => setSearchText(e.target.value)}/>
-            <button onClick={() => sortByStatus("status")}>Сортировать по статусу</button>
-            <button onClick={() => sortByStatus("alphabet")}>Сортировать по алфавиту</button>
+            <button className="sort" style={style_sort_status} onClick={() => sortByStatus("status")}>Сортировать по статусу</button>
+            <button className="sort" style={style_sort_alphabet} onClick={() => sortByStatus("alphabet")}>Сортировать по алфавиту</button>
             <div className="buttons">
                 <button className="add" onClick={() => setAnimModalState("add")}>Добавить</button>
                 <button className="update" onClick={() => setAnimModalState("update")}>Изменить</button>

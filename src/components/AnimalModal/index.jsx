@@ -38,10 +38,12 @@ export default () => {
         }
         
         if (animModalState == "add"){
-            const result = Api.addAnimal(body);
-            result.then(res => {
-                clear();
-            })
+            if (body.type) {
+                const result = Api.addAnimal(body);
+                result.then(res => {
+                    clear();
+                })
+            }
         }
         else if (animModalState == "update"){
             const result = Api.updateAnimal(animal._id, body);
